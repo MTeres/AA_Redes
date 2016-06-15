@@ -4,7 +4,7 @@ function Star(x, y, length, opacity) {
 	this.length = parseInt(length);
 	this.opacity = opacity;
 	this.factor = 1;
-	this.increment = Math.random() * .01;
+	this.increment = Math.random() * .03;
 }
 
 Star.prototype.draw = function(ctx) {
@@ -22,7 +22,6 @@ Star.prototype.draw = function(ctx) {
 	}
 	else if(this.opacity <= 0) {
 		this.factor = 1;
-		
 		this.x = Math.round(Math.random() * Width);
 		this.y = Math.round(Math.random() * Height);
 	}
