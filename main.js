@@ -43,6 +43,7 @@ function onClick (event) {
 }
 
 function doKeyDown(e) {
+	console.log(e.keyIdentifier);
 	player_list[0].action(e.keyIdentifier);
 }
 

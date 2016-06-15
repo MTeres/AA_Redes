@@ -3,6 +3,7 @@ function Player(x, y, r, style, circle) {
 	this.y = parseInt(y);
 	this.r = parseInt(r);
   this.life = 3;
+  this.v = 0;
 	this.style = style;
 }
 
@@ -21,7 +22,8 @@ Player.prototype.rand = function(){
 }
 
 Player.prototype.draw = function (canvas) {
-	canvas.beginPath();
+	this.onFrame();
+  canvas.beginPath();
 	canvas.rect(this.x, this.y, this.r + (this.r/2), this.r);
 	if (this.style.fill) {
     	canvas.fillStyle = this.style.color;
@@ -39,10 +41,24 @@ Player.prototype.action = function (ref) {
 }
 
 Player.prototype.move = function (ref) {
+  if(this.v > 10 || this.v < -10)
+    return
+
   if(ref == 'Right')
-    this.x += 4;
+    this.v += 2;
   else if(ref == 'Left')
-    this.x -= 4;
+    this.v -= 2;
+}
+
+Player.prototype.onFrame = function (){
+  if(this.v != 0) {
+    this.x += (this.v);
+    if(this.v > 0)
+      this.v-= 1;
+    else
+      this.v+= 1;
+  }
+
 }
 
 Player.prototype.fire = function () {
