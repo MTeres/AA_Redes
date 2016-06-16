@@ -1,3 +1,5 @@
+var player_list = [];
+
 function Player(x, y, r, style, circle) {
 	this.x = parseInt(x);
 	this.y = parseInt(y);
@@ -41,26 +43,27 @@ Player.prototype.action = function (ref) {
 }
 
 Player.prototype.move = function (ref) {
-  if(this.v > 10 || this.v < -10)
+  if(this.v > 15 || this.v < -15)
     return
 
   if(ref == 'Right')
-    this.v += 2;
+    this.v += 4;
   else if(ref == 'Left')
-    this.v -= 2;
+    this.v -= 4;
 }
 
 Player.prototype.onFrame = function (){
   if(this.v != 0) {
     this.x += (this.v);
     if(this.v > 0)
-      this.v-= 1;
+      this.v-= 2;
     else
-      this.v+= 1;
+      this.v+= 2;
   }
 
 }
 
 Player.prototype.fire = function () {
-
+  f = new Fire(this.x + (this.r/2), this.y + this.r + 5,1);
+  fire_list.push(f); 
 }

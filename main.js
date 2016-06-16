@@ -1,15 +1,10 @@
 var canvas, ctx, Height, Width, frames = 0;
-var numStars = 2000, stars =[];
+var numStars = 2000;
 var fps = 10;
 var numCircles = 0;
-var rec_list = [];
-var player_list = [];
 
 function main(){
 	onInitialize();
-	generate_starts();
-	generate_player();
-	generate_rects(3,10);
 	play();
 }
 
@@ -31,6 +26,10 @@ function onInitialize () {
     document.addEventListener('keydown', doKeyDown , false);
 	document.body.appendChild(canvas);
 	ctx = canvas.getContext("2d");
+
+	generate_starts();
+	generate_player();
+	generate_rects(3,10);
 }
 
 function play () {
@@ -53,11 +52,16 @@ function draw () {
 	$.each(stars, function() {
 		this.draw(ctx);
 	});
+	
 	$.each(rec_list, function() {
 		this.draw(ctx);
 	});
 
 	$.each(player_list, function() {
+		this.draw(ctx);
+	});
+
+	$.each(fire_list, function() {
 		this.draw(ctx);
 	});
 }
@@ -88,6 +92,8 @@ function generate_rects(line,col){
 			rec_list.push(r);
 		}
 	}
+
+	console.log(rec_list);
 }
 
 function generate_player(){

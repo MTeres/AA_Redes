@@ -1,3 +1,5 @@
+stars =[];
+
 function Star(x, y, length, opacity) {
 	this.x = parseInt(x);
 	this.y = parseInt(y);
