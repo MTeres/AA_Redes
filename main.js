@@ -1,7 +1,5 @@
 var canvas, ctx, Height, Width, frames = 0;
 var numStars = 2000;
-var fps = 10;
-var numCircles = 0;
 
 function main(){
 	onInitialize();
@@ -33,8 +31,8 @@ function onInitialize () {
 }
 
 function play () {
+	window.requestAnimationFrame(play);
 	draw();
-	window.requestAnimationFrame(play)
 }
 
 function onClick (event) {
@@ -42,22 +40,22 @@ function onClick (event) {
 }
 
 function doKeyDown(e) {
-	console.log(e.keyIdentifier);
 	player_list[0].action(e.keyIdentifier);
 }
 
 
 function draw () {
 	ctx.clearRect(0, 0, Width, Height);
+
 	$.each(stars, function() {
-		this.draw(ctx);
-	});
-	
-	$.each(rec_list, function() {
-		this.draw(ctx);
+//		this.draw(ctx);
 	});
 
 	$.each(player_list, function() {
+		this.draw(ctx);
+	});
+
+	$.each(rec_list, function() {
 		this.draw(ctx);
 	});
 
@@ -92,8 +90,6 @@ function generate_rects(line,col){
 			rec_list.push(r);
 		}
 	}
-
-	console.log(rec_list);
 }
 
 function generate_player(){

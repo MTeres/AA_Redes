@@ -43,7 +43,7 @@ Player.prototype.action = function (ref) {
 }
 
 Player.prototype.move = function (ref) {
-  if(this.v > 15 || this.v < -15)
+  if(this.v > 20 || this.v < -20)
     return
 
   if(ref == 'Right')
@@ -60,10 +60,11 @@ Player.prototype.onFrame = function (){
     else
       this.v+= 2;
   }
-
 }
 
 Player.prototype.fire = function () {
   f = new Fire(this.x + (this.r/2), this.y + this.r + 5,1);
-  fire_list.push(f); 
+  fire_list.push(f);
+  console.log(this); 
+  console.log(f);
 }

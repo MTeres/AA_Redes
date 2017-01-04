@@ -19,14 +19,15 @@ Fire.prototype.draw = function(canvas) {
 }
 
 Fire.prototype.onFrame = function () {
-	if(this.dir == 1){
-		this.y += 4;
-	}else{
-		this.y -= 4;
-	}
-
 	if(this.y > 600){
 		this.kill();
+		return;
+	}
+
+	if(this.dir == 1){
+		this.y += 6;
+	}else{
+		this.y -= 6;
 	}
 
 	this.verifyContact();
@@ -39,13 +40,13 @@ Fire.prototype.kill = function () {
 
 
 Fire.prototype.verifyContact = function () {
-	elm = this;
-	$.each(rec_list, function(index, value) {
-		if( ( (elm.x + elm.r < value.x) && elm.x < value.x + value.r) && ((elm.y + elm.r > value.y) && elm.y < value.y + value.r) ){
-			if(elm.live){
-				value.kill();
-				elm.kill(); 
+	for(i = 0 ; i < rec_list.length; i++ ) {
+		if( ((this.x + this.r >  rec_list[i].x) && (this.x <  rec_list[i].x + rec_list[i].r)) && ((this.y + this.r > rec_list[i].y) && (this.y < rec_list[i].y + rec_list[i].r))){
+			if(this.live){
+				rec_list[i].kill();
+				this.kill();
+				return; 
 			}
 		}
-	});
+	}
 }
