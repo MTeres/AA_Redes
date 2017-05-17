@@ -1,0 +1,24 @@
+{
+  "name": "atividade_redes",
+  "version": "1.0.0",
+  "description": "Atividade academica de redes (UFRRJ)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MTeres/AA_Redes.git"
+  },
+  "author": "mteres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MTeres/AA_Redes/issues"
+  },
+  "homepage": "https://github.com/MTeres/AA_Redes#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.0.1"
+  }
+}
