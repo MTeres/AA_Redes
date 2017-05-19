@@ -12,5 +12,5 @@ app.get('/',function(req,res){
 app.use(express.static(__dirname + '/www'));
 
 io.on('connection',function(socket){
-    console.log("n")
+	console.log('User connected');
 });
