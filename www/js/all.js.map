@@ -1,0 +1,1 @@
+{"version":3,"sources":["scripts/main.js"],"names":[],"mappings":";;AACA","file":"all.js","sourcesContent":["// aqui agruparei os membros exportados\nimport {$,jQuery} from 'jquery';"]}
