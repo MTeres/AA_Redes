@@ -24,3 +24,22 @@
     letter-spacing: 10px;
     font-family: gameFont;
     color: white; }
+    .game-intro .titulo .dt {
+      color: #0d0077; }
+  .game-intro .bts .bt {
+    background: #0d0077;
+    font-family: gameFont;
+    width: 100%;
+    color: #fff;
+    max-width: 150px;
+    line-height: 65px;
+    margin: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 6px;
+    position: relative;
+    margin-bottom: 60px;
+    cursor: pointer;
+    -webkit-transition: opacity .3s,background .3s;
+    transition: opacity .3s,background .3s;
+    min-height: 65px; }
