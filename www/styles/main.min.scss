@@ -1,1 +1,15 @@
-.intro{width:100%;padding:0 7%;display:table;margin:0;max-width:none;height:100vh}
+@font-face {
+    font-family: gameFont;
+    src: url(../assets/ARCADECLASSIC.TTF);
+}
+
+.game-intro{
+	background-color: blue;
+	.titulo{
+		text-align: center;
+		font-size: 60px;
+		font-family: gameFont;
+		color: white;
+	}
+}
+

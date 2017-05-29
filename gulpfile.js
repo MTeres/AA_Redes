@@ -9,11 +9,11 @@ var autoprefixer = require('gulp-autoprefixer');
 var reload = browserSync.reload;
 
 gulp.task('sass', function() {
-    gulp.src('www/scss/main.scss')
+    gulp.src('www/scss/*.scss')
             .pipe(gulp.dest('www/styles'))
+            .pipe(sass())
             .pipe(reload({ stream:true }))
             .pipe(rename({suffix: '.min'}))
-            .pipe(minifycss())
             .pipe(gulp.dest('www/styles'))
 });
 
@@ -47,8 +47,8 @@ gulp.task('serve', ['sass','nodemon'], function() {
 		}
     });
 
-    gulp.watch('www/scripts/**/*.js', ['uglify'])
     gulp.watch('www/scss/**/*.scss', ['sass'])
+    gulp.watch('www/scripts/**/*.js', ['uglify'])
     gulp.watch(
         ['*.html', 'scripts/**/*.js'],
         {cwd:'www'},

@@ -1,14 +1,26 @@
 <html>
-    <link rel="stylesheet" type="text/css" href="styles/main.min.scss">
+    <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles/main.min.css">
 	<head>
 		<title>Game tank!</title>
 	</head>
 	<body>
-        <section class="intro">
-            asudhasdd
-        </section>
-	</body>
+        <div id="fullpage">
+            <div class="section game-intro">
+                <div class="logo"><img src="assets/logo.png"></div>
+                <span class="titulo">BTTanks</span>
+                <span class="desc">Online: <span data-online>0</span></span>
+                <span class="desc">Watching: <span data-online>0</span></span>
+            </div>
+        </div>
+    </body>
     <script src="scripts/jquery-3.2.1.min.js"></script>
     <script src="scripts/socket.io.js"></script>
     <script src="scripts/comunication.js"></script>
+    <script src="scripts/jquery.fullpage.extensions.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage();
+        });
+    </script>
 </html>
