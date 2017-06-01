@@ -10,6 +10,7 @@ const browserSync = require('browser-sync');
 const minifycss = require('gulp-minify-css');
 const autoprefixer = require('gulp-autoprefixer');
 const reload = browserSync.reload;
+const browserify = require('gulp-browserify');
 
 gulp.task('sass', function() {
     gulp.src('www/scss/*.scss')
@@ -22,21 +23,21 @@ gulp.task('sass', function() {
 
 gulp.task('bundle', () => {
     gulp.src('www/**/main.js')
-        .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['es2015']
         }))
         .pipe(concat('all.js'))
-        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('www/js'));
 });
 
-gulp.task('uglify', function() {
-    gulp.src('www/scripts/main.js')
-            .pipe(uglify())
-            .pipe(rename({suffix: '.min'}))
-            .pipe(gulp.dest('www/scripts'))
-            .pipe(reload({ stream:true }))
+gulp.task('final', function() {
+    gulp.src('www/js/all.js')
+    .pipe(browserify({
+      insertGlobals : true,
+      debug : !gulp.env.production
+    }))
+    .pipe(concat('bundle.js'))
+    .pipe(gulp.dest('www/js/'))
 })
 
 gulp.task('nodemon', function (cb) {
@@ -50,7 +51,7 @@ gulp.task('nodemon', function (cb) {
 });
 
 // observa mudanças em arquivos na pasta SCSS e SCRIPTS
-gulp.task('serve', ['sass','bundle','nodemon'], function() {
+gulp.task('serve', ['sass', 'bundle', 'final', 'nodemon'], function() {
     browserSync.init(null, {
 		proxy: "http://localhost:8081",
         port: 8082,
@@ -62,8 +63,8 @@ gulp.task('serve', ['sass','bundle','nodemon'], function() {
     });
 
     gulp.watch('www/scss/**/*.scss', ['sass'])
-    gulp.watch('www/scripts/**/*.js', ['uglify'])
-    gulp.watch('www/scripts/**/main.js', ['bundle'])
+    gulp.watch('www/scripts/**/*.js', ['bundle'])
+    gulp.watch('www/js/all.js', ['final'])
     gulp.watch(
         ['*.html', 'scripts/**/*.js'],
         {cwd:'www'},

@@ -1,24 +1,22 @@
 <html>
     <link rel="stylesheet" type="text/css" href="styles/jquery.fullpage.min.css" />
     <link rel="stylesheet" type="text/css" href="styles/main.min.css">
+    <script src="http://app.globoesporte.globo.com/lib/jquery-1.8.3.min.js"></script>
 	<head>
 		<title>Game tank!</title>
 	</head>
 	<body>
-        <div id="fullpage">
+        <div class="fpage">
             <div class="section game-intro">
                 <div class="logo"><img src="assets/logo.png"></div>
+                <div class="texts">
                 <span class="titulo"><span class="dt">BTT</span>anks</span>
-                <span class="desc">Online: <span data-player>0</span></span>
-                <span class="desc">Watching: <span data-spec>0</span></span>
+                <span class="desc">Online: <span data-players>0</span></span>
+                <span class="desc">Watching: <span data-specs>0</span></span>
                 <div class="bts"><div class="bt">Jogar</div><div class="bt">Assistir</div></div>
+                </div>
             </div>
         </div>
     </body>
-    <script src="js/all.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#fullpage').fullpage();
-        });
-    </script>
+    <script src="js/bundle.js"></script>
 </html>

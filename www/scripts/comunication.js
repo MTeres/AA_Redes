@@ -1,7 +1,13 @@
-// exportar isso em breve :)
-var Client = {};
-var socket = io.connect( "http://localhost:8081");
+import IO from 'socket.io-client'
+import * as controller from '../scripts/controller'
+var socket = IO.connect( "http://localhost:8081");
 
-socket.on('infos_sender', function(data){
-	console.log(server_data)
-})
+export function bind_events() {
+	bind_infos();
+}
+
+var bind_infos = function() {
+	socket.on('infos_sender', function(data){
+		controller.atualiza(data);
+	})
+}
