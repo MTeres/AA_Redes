@@ -56,3 +56,8 @@ html, body {
       -webkit-transition: opacity .3s,background .3s;
       transition: opacity .3s,background .3s;
       min-height: 65px; }
+
+.game-play canvas {
+  background-color: black;
+  display: block;
+  margin: 0; }
