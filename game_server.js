@@ -17,3 +17,7 @@ exports.add_player = function (){
 
 	console.log("ADDD PLAYER")
 }
+
+exports.add_spec = function (){
+	console.log("ADDD SPEC")
+}

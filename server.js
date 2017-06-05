@@ -14,7 +14,11 @@ io.on('connection',function(socket){
 	console.log('Usuario na pagina');
 	socket.emit('infos_sender', {
 		players: game_server.players().length,
-		specs: 12
+		specs: game_server.specs().length
+	})
+
+	socket.on('add_spec', function(){
+		game_server.add_spec()
 	})
 });
 
