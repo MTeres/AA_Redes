@@ -33,6 +33,11 @@ var Player = function (id, socket){
 		self['controles'][data['bt']] = data['estado']
 	})
 
+	socket.on('disconnect', function(){
+		delete players[id]
+		delete specs[id]
+	})
+
 	return self
 }
 

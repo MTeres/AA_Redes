@@ -59,5 +59,16 @@ html, body {
 
 .game-play canvas {
   background-color: black;
-  display: block;
   margin: 0; }
+
+.game-play .list-players {
+  width: 197px;
+  height: 520px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #0d0077;
+  text-align: center; }
+  .game-play .list-players h1 {
+    font-family: 'Bubbler One', sans-serif;
+    color: #fff;
+    font-size: 20px; }
