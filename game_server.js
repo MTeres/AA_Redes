@@ -2,12 +2,12 @@ var limit_players = 5;
 var players = {}
 var specs = {}
 
-var Player = function (id){
+var Player = function (id, socket){
 	var self = {
 		id: id,
 		x: 0,
 		y: 0,
-		speed: 5,
+		speed: 8,
 		color: '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),
 		controles: {
 			up: false,
@@ -19,14 +19,19 @@ var Player = function (id){
 
 	self.update = function (){
 		if (self.controles.up)
-			self.x += self.speed
-		if (self.controles.le)
 			self.y -= self.speed
-		if (self.controles.rg)
-			self.y += self.speed
-		if (self.controles.dw)
+		if (self.controles.le)
 			self.x -= self.speed
+		if (self.controles.rg)
+			self.x += self.speed
+		if (self.controles.dw)
+			self.y += self.speed
 	}
+
+
+	socket.on('player_bt', function(data){
+		self['controles'][data['bt']] = data['estado']
+	})
 
 	return self
 }
@@ -54,7 +59,7 @@ exports.add_player = function (socket){
 	id = Number(Object.keys(specs).length) + 1
 	specs[id] = socket
 
-	player = Player(id)
+	player = Player(id, socket)
 	players[id] = player
 
 	return player

@@ -11,8 +11,6 @@ app.get('/',function(req,res){
 });
 
 io.on('connection',function(socket){
-	player = null
-
 	socket.emit('infos_sender', game_server.base_info())
 
 	socket.on('add_spec', function(){
@@ -24,12 +22,6 @@ io.on('connection',function(socket){
 		player = game_server.add_player(socket)
 		socket.emit('infos_sender', game_server.base_info())
 	})
-
-	socket.on('player_bt', function(data){
-		if (player)
-			player['controles'][data['bt']] = data['estado']
-	})
-
 
 });
 
