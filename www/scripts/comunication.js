@@ -57,7 +57,10 @@ var add_spec = function(e){
 }
 
 var add_player = function(e){
-	socket.emit('add_player');
+	const nome = $('[data-name]').val();
+	if (!(nome != ''))
+		return alert("Preencha o seu nome :)")
+	socket.emit('add_player', {nome: nome});
 	controller.inicia_game(true);
 	bind_player()
 }

@@ -2,12 +2,13 @@ var limit_players = 5;
 var players = {}
 var specs = {}
 
-var Player = function (id, socket){
+var Player = function (id, socket, nome){
 	var self = {
 		id: id,
 		x: 0,
 		y: 0,
 		speed: 8,
+		nome: nome,
 		color: '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),
 		controles: {
 			up: false,
@@ -56,7 +57,7 @@ exports.base_info = function() {
 	return data
 }
 
-exports.add_player = function (socket){
+exports.add_player = function (socket, nome){
 	if (players.length >= limit_players){
 		return
 	}
@@ -64,7 +65,7 @@ exports.add_player = function (socket){
 	id = Number(Object.keys(specs).length) + 1
 	specs[id] = socket
 
-	player = Player(id, socket)
+	player = Player(id, socket, nome)
 	players[id] = player
 
 	return player
@@ -76,18 +77,12 @@ exports.add_spec = function (socket){
 }
 
 exports.update = function(){
-	data = [];
 	for (i in players){
-		var p = players[i]
+		p = players[i]
 		p.update();
-		data.push({
-			x: p.x,
-			y: p.y,
-			color: p.color
-		})
 	}
 
 	for (i in specs){
-		specs[i].emit('atualiza', data)
+		specs[i].emit('atualiza', players)
 	}
 }

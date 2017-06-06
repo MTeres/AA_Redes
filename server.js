@@ -18,8 +18,8 @@ io.on('connection',function(socket){
 		socket.emit('infos_sender', game_server.base_info())
 	})
 
-	socket.on('add_player', function(){
-		player = game_server.add_player(socket)
+	socket.on('add_player', function(data){
+		player = game_server.add_player(socket, data.nome)
 		socket.emit('infos_sender', game_server.base_info())
 	})
 

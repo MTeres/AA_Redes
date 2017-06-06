@@ -18,6 +18,18 @@ html, body {
     width: 100%; }
     .game-intro .logo img {
       filter: grayscale(100%); }
+  .game-intro input {
+    outline: none;
+    /* color: #fff; */
+    border: none;
+    margin: 10px 0;
+    font-family: gameFont;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    width: 100px;
+    box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.7);
+    transition: transform 0.5s cubic-bezier(0.67, -0.33, 0.62, 1.35), box-shadow 0.4s ease; }
   .game-intro .texts {
     width: 100%;
     background-color: black;
@@ -72,3 +84,18 @@ html, body {
     font-family: 'Bubbler One', sans-serif;
     color: #fff;
     font-size: 20px; }
+  .game-play .list-players ul {
+    font-family: 'Bubbler One', sans-serif;
+    text-align: left;
+    list-style-type: none;
+    color: #fff;
+    font-size: 15px; }
+    .game-play .list-players ul div {
+      display: inline-block; }
+    .game-play .list-players ul h2 {
+      display: inline-block;
+      color: #fff;
+      font-size: 25px; }
+    .game-play .list-players ul span {
+      font-family: 'Roboto', sans-serif;
+      margin-left: 80px; }
