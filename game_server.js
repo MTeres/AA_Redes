@@ -2,6 +2,17 @@ var limit_players = 5;
 var players = {}
 var specs = {}
 var size = {x: 1150, y:520, box: 50}
+var objs = []
+
+var Obj = function(){
+	var self = {
+		x: Math.floor((Math.random() * (size.x - size.box)) + 1),
+		y: Math.floor((Math.random() * (size.y - size.box)) + 1),
+		val: Math.floor((Math.random() * (size.x/10 + size.y/10)) + 1) - Math.floor((Math.random() * (size.x/100)) + 1)
+	}
+
+	return self;
+}
 
 var Player = function (id, socket, nome){
 	var self = {
@@ -20,8 +31,6 @@ var Player = function (id, socket, nome){
 	}
 
 	self.update = function (){
-		console.log("X" + self.x)
-		console.log("Y" + self.y)
 		if (self.controles.up)
 			self.y -= self.speed
 		if (self.controles.le)
@@ -61,6 +70,14 @@ var Player = function (id, socket, nome){
 	return self
 }
 
+var controle_objetos = function(){
+	numero = Math.floor((Math.random() * Object.keys(players).length))
+	if (numero == Object.keys(players).length || Object.keys(players).length * 2 < objs.length)
+		return
+	obj = Obj()
+	objs.push(obj)
+}
+
 exports.players = function () {
 	return players
 }
@@ -96,12 +113,14 @@ exports.add_spec = function (socket){
 }
 
 exports.update = function(){
+	controle_objetos()
+	console.log(objs)
 	for (i in players){
 		p = players[i]
 		p.update();
 	}
 
 	for (i in specs){
-		specs[i].emit('atualiza', players)
+		specs[i].emit('atualiza', {'players': players, 'objs': objs})
 	}
 }
