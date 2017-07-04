@@ -1,6 +1,7 @@
 var limit_players = 5;
 var players = {}
 var specs = {}
+var size = {x: 1150, y:520, box: 50}
 
 var Player = function (id, socket, nome){
 	var self = {
@@ -19,6 +20,8 @@ var Player = function (id, socket, nome){
 	}
 
 	self.update = function (){
+		console.log("X" + self.x)
+		console.log("Y" + self.y)
 		if (self.controles.up)
 			self.y -= self.speed
 		if (self.controles.le)
@@ -27,6 +30,22 @@ var Player = function (id, socket, nome){
 			self.x += self.speed
 		if (self.controles.dw)
 			self.y += self.speed
+
+		if (self.x + size.box > size.x){
+			self.x = size.x - size.box
+		}
+
+		if (self.y + size.box > size.y){
+			self.y = size.y - size.box
+		}
+
+		if (self.x < 0){
+			self.x = 0
+		}
+
+		if (self.y < 0){
+			self.y = 0
+		}
 	}
 
 
