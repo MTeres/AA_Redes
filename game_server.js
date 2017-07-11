@@ -20,6 +20,7 @@ var Player = function (id, socket, nome){
 		x: 0,
 		y: 0,
 		speed: 8,
+		pontos: 0,
 		nome: nome,
 		color: '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6),
 		controles: {
@@ -54,6 +55,18 @@ var Player = function (id, socket, nome){
 
 		if (self.y < 0){
 			self.y = 0
+		}
+
+		self.pontua();
+	}
+
+	self.pontua = function(){
+		for (index in objs){
+			obj = objs[index]
+			if ( ((self.x + size.box >= obj.x) && ((self.x + size.box) <= obj.x + 40)) && ((self.y + size.box >= obj.y) && (self.y + size.box <= obj.y + 40))){
+				self.pontos += obj.val;
+				objs.splice(index, 1);
+			}
 		}
 	}
 
@@ -114,7 +127,6 @@ exports.add_spec = function (socket){
 
 exports.update = function(){
 	controle_objetos()
-	console.log(objs)
 	for (i in players){
 		p = players[i]
 		p.update();
