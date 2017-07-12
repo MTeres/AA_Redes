@@ -8,9 +8,10 @@ export function atualiza(data) {
 	const lista = data['players'];
 	for (var i in lista){
 		if ($('[data-item=' + lista[i].id + ']').length){
-			console.log($('[data-item=' + lista[i].id + ']'))
+		    console.log($('[data-pontos=' + lista[i].id + ']'))
+			$('[data-pontos=' + lista[i].id + ']').text(lista[i].pontos)
 		}else {
-			$('[data-list-players]').append('<li data-item="' + lista[i].id + '"><h2>' + lista[i].nome.toUpperCase() + '</h2> <span>' + lista[i].pontos + '</span></li>');
+			$('[data-list-players]').append('<li data-item="' + lista[i].id + '"><h2>' + lista[i].nome.toUpperCase() + '</h2> <span data-pontos="' + lista[i].id + '">' + lista[i].pontos + '</span></li>');
 		}
 		const val = lista[i];
 	}
