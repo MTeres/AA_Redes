@@ -48,6 +48,7 @@ var bind_infos = function() {
 
 	socket.on('atualiza', function(data){
 		controller.atualiza_game(data);
+		controller.atualiza(data);
 	})
 }
 

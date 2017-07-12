@@ -3,12 +3,13 @@ var players = {}
 var specs = {}
 var size = {x: 1150, y:520, box: 50}
 var objs = []
+var limite = 1
 
 var Obj = function(){
 	var self = {
-		x: Math.floor((Math.random() * (size.x - size.box)) + 1),
-		y: Math.floor((Math.random() * (size.y - size.box)) + 1),
-		val: Math.floor((Math.random() * (size.x/10 + size.y/10)) + 1) - Math.floor((Math.random() * (size.x/100)) + 1)
+		x: Math.floor((Math.random() * (size.x - size.box*2)) + 1),
+		y: Math.floor((Math.random() * (size.y - size.box*2)) + 1),
+		val: Math.floor((Math.random() * (size.x/10 + size.y/10)) + 1) - Math.floor((Math.random() * (size.x/10)) + 1)
 	}
 
 	return self;
@@ -84,9 +85,12 @@ var Player = function (id, socket, nome){
 }
 
 var controle_objetos = function(){
-	numero = Math.floor((Math.random() * Object.keys(players).length))
-	if (numero == Object.keys(players).length || Object.keys(players).length * 2 < objs.length)
-		return
+	numero = Math.floor((Math.random() * 5000))
+	if (numero > 100 || Object.keys(players).length * (2 + limite) < objs.length) {
+        if (numero < 2)
+            limite += 1
+        return
+    }
 	obj = Obj()
 	objs.push(obj)
 }

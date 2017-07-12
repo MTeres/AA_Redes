@@ -2,9 +2,17 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 var list_players = [];
 export function atualiza(data) {
-	for (var item in data){
-		const val = data[item]
-		$('[data-' + item + ']').text(val);
+	if (data['players'] == 0 || data['players'] == 1)
+		return
+
+	const lista = data['players'];
+	for (var i in lista){
+		if ($('[data-item=' + lista[i].id + ']').length){
+			console.log($('[data-item=' + lista[i].id + ']'))
+		}else {
+			$('[data-list-players]').append('<li data-item="' + lista[i].id + '"><h2>' + lista[i].nome.toUpperCase() + '</h2> <span>' + lista[i].pontos + '</span></li>');
+		}
+		const val = lista[i];
 	}
 }
 
