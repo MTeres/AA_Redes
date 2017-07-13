@@ -17,6 +17,12 @@ export function atualiza(data) {
 	}
 }
 
+
+export function atualiza_info(data){
+	$('[data-players]').text(data['players'])
+	$('[data-specs]').text(data['specs'])
+}
+
 export function inicia_game(player){
 	$('.game-intro').hide();
 	$('.game-play').show();

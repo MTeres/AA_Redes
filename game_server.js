@@ -107,6 +107,7 @@ exports.base_info = function() {
 	data = {}
 	data['players'] = Number(Object.keys(players).length)
 	data['specs'] = Number(Object.keys(specs).length) - data['players']
+	console.log(data)
 	return data
 }
 

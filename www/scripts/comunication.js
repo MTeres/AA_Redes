@@ -43,7 +43,7 @@ var bind_player = function (){
 
 var bind_infos = function() {
 	socket.on('infos_sender', function(data){
-		controller.atualiza(data);
+		controller.atualiza_info(data);
 	})
 
 	socket.on('atualiza', function(data){
